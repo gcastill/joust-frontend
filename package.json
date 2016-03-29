@@ -1,7 +1,7 @@
 {
   "name": "joust-frontend",
   "version": "0.0.0",
-  "description": "Small description for joust-frontend goes here",
+  "description": "The ember frontend for joust-backend.",
   "private": true,
   "directories": {
     "doc": "doc",
