@@ -9,9 +9,12 @@ var options = {
   method: 'POST',
   url: 'https://joust-backend.herokuapp.com/oauth/google',
   headers: {
-	'x-google-token' : req.get('x-google-token')
+	 'x-google-token' : req.get('x-google-token')
   },
-  form: { key: 'value' }
+  form: {
+          "grant_type" : "password",
+          "scope" : "read"
+        }
 };
  
 var callback = function(error, response, body) {
