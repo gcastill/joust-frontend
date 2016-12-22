@@ -7,22 +7,34 @@ router.post('/google', function(req, res, next) {
 
 var options = {
   method: 'POST',
-  url: 'https://joust-backend.herokuapp.com/oauth/google',
-  headers: {
-	 'x-google-token' : req.get('x-google-token')
-  },
+  url: 'https://joust-backend.herokuapp.com/oauth/token',
+
   form: {
-          "grant_type" : "password",
-          "scope" : "read"
+          "grant_type" : "google_token",
+          "scope" : "read",
+          "google_token" : req.get('x-google-token')
         }
 };
  
 var callback = function(error, response, body) {
   if (!error && response.statusCode == 200) {
-  	res.json(JSON.parse(body));
+    var tokenData = JSON.parse(body);
+
+var meOptions = {
+  method: "GET",
+  url: 'http://joust-backend.herokuapp.com/rest/me',
+  headers : {
+    'Authorization' : 'Bearer ' + tokenData.access_token
   }
+
 }
- 
+var meCallback = function(error, response, body) {
+    res.json(JSON.parse(body));
+  }
+request(meOptions, meCallback);
+
+
+}};
 request(options, callback).auth('nodejs', 'nodejs', true);
 
 

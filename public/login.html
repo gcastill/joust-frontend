@@ -52,21 +52,17 @@
 			$.ajax({
 				url : "${base}/oauth/google",
 				headers : {
-					'Authorization' : 'Basic ' + btoa("nodejs:nodejs"),
 					'x-google-token' : idToken
 				},
 				method : 'POST',
-				data : {
-					"grant_type" : "password",
-					"scope" : "read"
-				},
 				success : function(data) {
 					var profile = data.profile;
 					$("#login").hide();
-					$('#img').attr("src", profile.profileUrl);
-					$('#given-name').text(profile.givenName);
-					$('#family-name').text(profile.familyName);
-					$('#email').text(profile.email);
+					console.log(data);
+					//$('#img').attr("src", profile.profileUrl);
+					//$('#given-name').text(profile.givenName);
+					//$('#family-name').text(profile.familyName);
+					//$('#email').text(profile.email);
 					$('#info').show();
 				}
 			});

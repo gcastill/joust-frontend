@@ -37,18 +37,15 @@ html(lang=en)
               'x-google-token' : idToken
             },
             method : 'POST',
-            data : {
-              "grant_type" : "password",
-              "scope" : "read"
-            },
             success : function(data) {
-              var profile = data.profile;
+              var profile = data;
               $("#login").hide();
-              $('#img').attr("src", profile.profileUrl);
-              $('#given-name').text(profile.givenName);
-              $('#family-name').text(profile.familyName);
-              $('#email').text(profile.email);
-              $('#info').show();
+             
+             $('#img').attr("src", profile.profileUrl);
+             $('#given-name').text(profile.givenName);
+             $('#family-name').text(profile.familyName);
+             $('#email').text(profile.email);
+             $('#info').show();
             }
         });
 
